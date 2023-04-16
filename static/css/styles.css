@@ -1,0 +1,48 @@
+body {
+    background-color: #F2F3F5;
+}
+
+h1 {
+    padding-bottom: 25px;
+}
+
+th {
+    text-align: center;
+    padding: 5px 0px;
+    border: 1px solid black;
+}
+
+td {
+    padding: 5px 0px;
+    border-bottom: 1.5px solid white;
+}
+
+img {
+    padding-bottom: 10px;
+    width: 90%;
+    height: 500px;
+}
+
+form {
+    text-align: left;
+    width: 30%;
+}
+
+.img-alt {
+    padding-top: 200px;
+    padding-bottom: 300px;
+}
+
+.flash {
+    color: red;
+}
+
+#content {
+    background-color: #F5F5F4;
+    text-align: center;
+    padding: 50px 100px;
+    margin: 50px auto;
+    width: 50%;
+    border: 1px solid black;
+}
+

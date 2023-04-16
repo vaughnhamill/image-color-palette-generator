@@ -1,0 +1,75 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% include 'header.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" id="content">
+    <h1>Image Color Palette Generator</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    </form>
+
+    <br>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p class="flash">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <br>
+
+    {% if image %}
+        <img src="{{ image }}" alt="{{ image }}">
+    {% else %}
+        <p class="img-alt">Upload an image to get results!</p>
+    {% endif %}
+
+    {% if results %}
+        {% if form.pal.data == "True Colors" %}
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>Color</th>
+                        <th>Hex Code</th>
+                        <th>Color Percentage</th>
+                    </tr>
+
+                    {% for result in results %}
+                        <tr>
+                            <td style="background-color: {{ result }}"></td>
+                            <td>{{ result }}</td>
+                            <td>{{ results[result] }}%</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% else %}
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>Color</th>
+                        <th>Hex Code</th>
+                    </tr>
+
+                    {% for result in results %}
+                        <tr>
+                            <td style="background-color: {{ result }}"></td>
+                            <td>{{ result }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    {% endif %}
+
+</div>
+
+{% endblock %}
